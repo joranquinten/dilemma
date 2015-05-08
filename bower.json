@@ -1,0 +1,22 @@
+{
+  "name": "dire-dilemma",
+  "version": "0.1.0",
+  "authors": [
+    "Joran Quinten <joran@joranquinten.nl>"
+  ],
+  "description": "Random dire dilemma's",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "~3.0.3"
+  },
+  "devDependencies": {
+    "handlebars": "~3.0.3"
+  }
+}

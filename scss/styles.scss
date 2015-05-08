@@ -1,0 +1,10 @@
+@import 'normalize.scss';
+@import 'foundation.scss';
+
+body {
+	background: rgb(186, 80, 144);
+}
+
+.logo { text-align: center; color: #fff; }
+.logo__image { font-size: 4em; }
+.logo__title { margin: 0 auto 0.67em; font-family: Pacifico; font-size: 3em; line-height: 1.0em; color: #fff;  }
