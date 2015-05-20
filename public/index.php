@@ -17,6 +17,24 @@
       </div>
     </div>
 	
+	<div class="dilemma__container">
+		<div class="dilemma__card animated flipInY">
+			<div class="dilemma__title">This is the first choice</div>
+			<div class="dilemma__details">
+				<div class="dilemma__rating">2.5</div>
+				<div class="dilemma__created">Mon, 04 May 2015 18:08:31 +0000</div>
+			</div>
+		</div>	
+		<div class="dilemma__card animated flipInY">
+			<div class="dilemma__title">This is the secondest choice</div>
+			<div class="dilemma__details">
+				<div class="dilemma__rating">2.5</div>
+				<div class="dilemma__created">Mon, 04 May 2015 18:08:31 +0000</div>
+			</div>
+		</div>		
+	</div>
+	
+	
     <link rel="stylesheet" href="css/styles.min.css" />
     <script src="js/scripts.js"></script>
     <script>
