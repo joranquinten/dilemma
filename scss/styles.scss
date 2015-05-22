@@ -34,7 +34,6 @@ body {
 		background: -webkit-linear-gradient(90deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
 		background: linear-gradient(180deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
 		
-		-webkit-transition: width .5s ease-in-out;
 		transition: width .5s ease-in-out;
 	
 	}
@@ -46,6 +45,14 @@ body {
 	color: rgb(186, 80, 144);
 	padding: 1em;
 	position: relative;
+}
+
+.dilemma__card--active {
+	background: rgba($primary-color, 0.01);
+	background:  mix($primary-color, #fff, 20%);
+
+	-webkit-transition: background-color .5s ease-in-out;
+	transition: background-color .5s ease-in-out;
 }
 
 .dilemma__title {

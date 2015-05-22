@@ -1,6 +1,6 @@
 var settings = {
 	dilemmaURL : "../server/dilemma.json",
-	dilemmaTime : 60 * 1000
+	dilemmaTime : 10 * 1000
 };
 
 var options = {
@@ -15,17 +15,31 @@ var utils = {
 };
 
 function loadDilemma(){
-	
-	startTimer();
-	
+	var timeout = setTimeout(function(){startTimer();}, 1000);
 	var request = new XMLHttpRequest();
 	request.open('GET', settings.dilemmaURL, true);
-
 	request.onload = function() {
 	  if (request.status >= 200 && request.status < 400) {
 		console.log('JSON loaded');
-		var data = JSON.parse(request.responseText);
-		console.log(data);
+		var r = JSON.parse(request.responseText);
+		var t = Handlebars.compile(document.getElementById('dilemma-cards').innerHTML);
+		console.log(r);
+		var collection = r.dilemma.items;
+		var output = t({dilemma:collection});
+		document.getElementById('dilemma__loader').innerHTML = output;
+		
+		
+		// Add interaction
+		var cards = document.querySelectorAll('.dilemma__card');
+		for (var i=0; i < cards.length; i++){
+			cards[i].addEventListener('click', function(e) {
+				e.preventDefault();
+				[].map.call(document.querySelectorAll('.dilemma__card--active'), function(el) {
+                el.classList.remove('dilemma__card--active');
+            });		
+            this.classList.add('dilemma__card--active'); 
+			});
+		}
 		
 	  } else {
 		console.log('Error loading '+ settings.dilemmaURL);
@@ -38,23 +52,21 @@ function loadDilemma(){
 }
 
 // Make a class out of this!
-
 var intervalTimer, iCurrentTime = 0, iMaxTime = settings.dilemmaTime, gauge = document.querySelector('.dilemma__gauge__fill');
 function startTimer(){
 	intervalTimer = setInterval(function(){
 			iCurrentTime += 500;
 			
 			// Move indicator
-			var percentage = parseFloat(iCurrentTime/iMaxTime).toFixed(2)*100;
-			console.log(percentage);
+			var percentage = (parseFloat(iCurrentTime/iMaxTime).toFixed(2)*100).toFixed(2);
 			gauge.style.width = percentage+'%';
 			
 			// Time up!
 			if (iCurrentTime >= iMaxTime){
 				gauge.style.width = '100%';
 				stopTimer();
+				var timeout = setTimeout(function(){loadDilemma();},1000);
 			}
-			console.log(iCurrentTime);
 		}, 500
 	);
 }

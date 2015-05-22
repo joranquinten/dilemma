@@ -6653,7 +6653,6 @@ body {
   background: #ba5072;
   background: -webkit-linear-gradient(90deg, #ba5072 30%, #b24184 70%);
   background: linear-gradient(180deg, #ba5072 30%, #b24184 70%);
-  -webkit-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out; }
 
 .dilemma__card {
@@ -6663,6 +6662,12 @@ body {
   color: #ba5090;
   padding: 1em;
   position: relative; }
+
+.dilemma__card--active {
+  background: rgba(186, 80, 144, 0.01);
+  background: #f1dce8;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out; }
 
 .dilemma__title {
   font-size: 2.8em;

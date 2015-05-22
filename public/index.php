@@ -7,6 +7,20 @@
     <link href="http://fonts.googleapis.com/css?family=Pacifico:400,700|Open+Sans" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/critical.js"></script>
+	
+	<script id="dilemma-cards" type="text/x-handlebars-template">
+	{{#each dilemma}}	
+	<div class="dilemma__card animated flipInY">
+		<div class="dilemma__title" data-dilemma-id="{{this.dilemma_id}}">{{this.title}}</div>
+		<div class="dilemma__details clearfix">
+			<span class="dilemma__rating left">Rating: {{this.score}}</span>
+			<span class="dilemma__chosen left">Chosen: {{this.votes}}</span>
+			<span class="dilemma__created right">Created: {{this.created_at}}</span>
+		</div>
+	</div>		
+	{{/each}}
+	</script>
+	
   </head>
   <body>
     
@@ -25,32 +39,16 @@
 				<div class="dilemma__gauge__fill animated"></div>
 			</div>
 				
-			<div class="dilemma__container">
-				
+			<div id="dilemma__loader" class="dilemma__container">
 			
-			
-				<div class="dilemma__card animated">
-					<div class="dilemma__title">This is the first choice</div>
-					<div class="dilemma__details clearfix">
-						<span class="dilemma__rating left">Rating: 2.5</span>
-						<span class="dilemma__chosen left">Chosen: 542</span>
-						<span class="dilemma__created right">Created: Mon, 04 May 2015 18:08:31 +0000</span>
-					</div>
+				<div class="dilemma__info animated">
+					<h2>How does it work?</h2>
+					<p>Each round of the game, you get submitted to two dilemmas. You must choose one dilemma to proceed. Choose before the timer runs out!</p>
+					<button id="button__start" class="button round expand">Got it!</button>
 				</div>	
-				<div class="dilemma__card animated">
-					<div class="dilemma__title">This is the secondest choice</div>
-					<div class="dilemma__details clearfix">
-						<span class="dilemma__rating left">Rating: 2</span>
-						<span class="dilemma__chosen left">Chosen: 142</span>
-						<span class="dilemma__created right">Created: Mon, 04 May 2015 18:08:31 +0000</span>
-					</div>
-				</div>		
+		
 			</div>
-		<div class="dilemma__info animated">
-			<h2>How does it work?</h2>
-			<p>Each round of the game, you get submitted to two dilemmas. You must choose one dilemma to proceed. Choose before the timer runs out!</p>
-			<button id="button__start" class="button round expand">Got it!</button>
-		</div>	
+			
 		
 		</div>	
 		
