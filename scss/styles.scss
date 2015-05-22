@@ -1,35 +1,96 @@
+$primary-color: rgb(186, 80, 144);
+
 @import 'normalize.scss';
 @import 'foundation.scss';
 
 body {
-	background: rgb(186, 80, 144);
+	background: lighten($primary-color,20%);
 }
 
 .logo { text-align: center; color: #fff; }
-.logo__image { font-size: 4em; }
-.logo__title { margin: 0 auto 0.67em; font-family: Pacifico; font-size: 3em; line-height: 1.0em; color: #fff;  }
+.logo__image { font-size: 4em;  }
+.logo__title { margin: 0.67em auto 0; font-family: Pacifico; font-size: 3em; line-height: 1.0em; color: #fff;  }
 
 .dilemma__container  {
 	position: relative;
 }
 
+.dilemma__gauge {
+	margin: 1em auto;
+	position: relative;
+	border-radius: 1000px;
+	display: block;
+	border: 3px solid rgb(240, 240, 240);
+	background: rgb(240, 240, 240);
+	box-shadow: inset 0 0 3px 0 rgba(0,0,0,0.5);
+
+}
+	.dilemma__gauge__fill {
+		display: block;
+		width: 0%;
+		border-radius: 1000px;
+		height: 5px;
+		background: rgb(186, 80, 114);
+		background: -webkit-linear-gradient(90deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
+		background: linear-gradient(180deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
+		
+		-webkit-transition: width .5s ease-in-out;
+		transition: width .5s ease-in-out;
+	
+	}
+
 .dilemma__card {
+	margin: 1em auto;
 	border-radius: 5px;
 	background: #fff;
 	color: rgb(186, 80, 144);
-	margin: 1em;
 	padding: 1em;
+	position: relative;
 }
 
-.dilemma__container:after {
+.dilemma__title {
+	font-size: 2.8em;
+	color: rgb(66,66,66);
+}
+.dilemma__details:before {
+	content: "";
+	display:block;
+	height: 0px;
+	width: 100%;
+	border-top: 1px solid rgb(240,240,240);
+	border-bottom: 1px solid rgb(210,210,210);
+	margin: 0.67em 0;
+}	
+.dilemma__details {
+	font-size: 0.67em;
+	color: lighten($primary-color,20%)
+}	
+	.dilemma__details * + * {
+		padding: 0 1em;
+	}
+	.dilemma__details * + *:last-child {
+		padding: 0 0 0 1em;
+	}
+	.dilemma__details > *:first-child {
+		padding: 0 1em 0 0;
+	}
+	
+	.dilemma__rating {
+	}
+	.dilemma__chosen {
+	}
+	.dilemma__created {
+	}
+
+.dilemma__container .dilemma__card:last-child:after {
 	content: "or";
 	display: block;
 	position: absolute;
 	left: 50%;
-	top: 50%;
+	top: -6px;
 	margin: -25px 0 0 -25px;
 	border-radius: 1000px;
-	background: rgb(186, 80, 144);
+	background: darken($primary-color,20%);
 	color: #fff;
 	font-family: Pacifico;
 	text-align: center;
@@ -38,6 +99,6 @@ body {
 	line-height: 36px;
 	vertical-align: middle;
 	font-size: 2em;
-	z-index: 10000;
+	z-index: 1000;
 	box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
 }

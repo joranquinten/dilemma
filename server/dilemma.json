@@ -16,13 +16,15 @@
 			"dilemma_id": 1234,
 			"created_at": "Mon, 04 May 2015 18:08:31 +0000",
 			"score": 3.5,
-			"title": "Choice number A"
+			"votes": 142,
+			"title": "This is the first, number A"
 			},
 			{
 			"dilemma_id": 1235,
 			"created_at": "Tue, 05 May 2015 12:08:31 +0000",
 			"score": 2.5,
-			"title": "Choice number B"
+			"votes": 542,
+			"title": "This is the secondest choice"
 			}
 		]
 	}
