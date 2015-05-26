@@ -10,21 +10,14 @@
             "measure": "seconds"
         }
     },
-	"dilemma" : {
+	"result" : {
 		"items": [
 			{
 			"dilemma_id": 1234,
 			"created_at": "Mon, 04 May 2015 18:08:31 +0000",
 			"score": 3.5,
-			"votes": 142,
+			"votes": 143,
 			"title": "This is the first, number A"
-			},
-			{
-			"dilemma_id": 1235,
-			"created_at": "Tue, 05 May 2015 12:08:31 +0000",
-			"score": 2.5,
-			"votes": 542,
-			"title": "This is the secondest choice"
 			}
 		]
 	}

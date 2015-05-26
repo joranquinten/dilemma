@@ -6595,6 +6595,10 @@ th.hide-for-touch {
 body {
   background: #d799be; }
 
+.hidden {
+  display: none;
+  visibility: hidden; }
+
 .logo {
   text-align: center;
   color: #fff; }
@@ -6692,3 +6696,9 @@ body {
   font-size: 2em;
   z-index: 1000;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
+
+.dilemma__container .dilemma__card.dilemma__card--result:last-child:after {
+  content: "You chose";
+  width: 170px;
+  margin: -25px 0 0 -85px;
+  line-height: 42px; }
