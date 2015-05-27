@@ -1,10 +1,13 @@
 $primary-color: rgb(186, 80, 144);
+$primary-font-color: rgb(34, 34, 34);
 
 @import 'normalize.scss';
 @import 'foundation.scss';
 
 body {
 	background: lighten($primary-color,20%);
+	min-height: 100vh;
+	position: relative;
 }
 
 .hidden {
@@ -13,8 +16,8 @@ body {
 }
 
 .logo { text-align: center; color: #fff; }
-.logo__image { font-size: 4em;  }
-.logo__title { margin: 0.67em auto 0; font-family: Pacifico; font-size: 3em; line-height: 1.0em; color: #fff;  }
+.logo__image { font-size: 12vmin;  }
+.logo__title { margin: 0.67em auto 0; font-family: Pacifico;  font-size: 10vmin; line-height: 1.0em; color: #fff;  }
 
 .dilemma__container  {
 	position: relative;
@@ -62,6 +65,8 @@ body {
 
 .dilemma__title {
 	font-size: 2.8em;
+	font-size: 8vmin;
+	line-height: 1em;
 	color: rgb(66,66,66);
 }
 .dilemma__details:before {
@@ -120,4 +125,18 @@ body {
 	width: 170px;
 	margin: -25px 0 0 -85px;
 	line-height: 42px;
+}
+
+footer {
+	position: static;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: lighten($primary-color,30%);
+	color: lighten($primary-font-color,15%);
+	display: block;
+	padding: 10px 0;
+	font-size: 0.8em;
+	font-family: Pacifico;
+	text-align: center;
 }

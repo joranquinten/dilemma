@@ -14,7 +14,6 @@
 		"items": [
 			{
 			"dilemma_id": 1234,
-			"guid": "{11699E2E-332F-4226-AEF4-6438E025386A}",
 			"created_at": "Mon, 04 May 2015 18:08:31 +0000",
 			"score": 3.5,
 			"votes": 142,
@@ -22,12 +21,12 @@
 			},
 			{
 			"dilemma_id": 1235,
-			"guid": "{C9904795-29D7-498E-8D61-D69D6CA1260D}",
 			"created_at": "Tue, 05 May 2015 12:08:31 +0000",
 			"score": 2.5,
 			"votes": 542,
 			"title": "This is the secondest choice"
 			}
-		]
+		],
+		"guid": "{11699E2E-332F-4226-AEF4-6438E025386A}"
 	}
 }

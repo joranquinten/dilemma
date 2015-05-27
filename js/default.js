@@ -1,6 +1,7 @@
 var settings = {
 	urls : {
-		dilemma__cards : "../server/dilemma__cards.json",
+		base_url: "http://localhost/dilemma/public/",
+		dilemma__cards : "../server/dilemma__cards.php",
 		dilemma__result : "../server/dilemma__result.json"
 	} ,
 	dilemmaTime : 10 * 1000
@@ -38,9 +39,7 @@ function loadDilemma(){
 		var timeout = setTimeout(function(){startTimer(document.querySelector('.dilemma__gauge__fill'));}, 1000);
 		
 		// Set hash
-		var newHash = '';
-		for (var i = 0; i < collection.length; i++){ newHash += (collection[i].guid); }
-		window.location.hash = '#'+ newHash;
+		if (r.dilemma.guid !== ''){ window.location.hash = '#'+ r.dilemma.guid;}
 		
 		// Add interaction
 		var cards = document.querySelectorAll('.dilemma__card');
@@ -51,9 +50,14 @@ function loadDilemma(){
                 el.classList.remove('dilemma__card--active');
             });		
             this.classList.add('dilemma__card--active'); 
-			saveDilemma();
+				saveDilemma();
 			});
 		}
+		var button__quit = document.querySelector('#button__quitDilemma');
+		button__quit.addEventListener('click', function(){
+			stopTimer();
+			location.href = settings.urls.base_url;
+		}, false);
 	  } else {
 		console.log('Error loading '+ loadUrl);
 	  }
@@ -109,7 +113,6 @@ function dilemmaControls(){
 		});
 		loadDilemma();
 	 }, false);
-
 }
 
 // Make a class out of this!
