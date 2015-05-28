@@ -8,6 +8,7 @@ body {
 	background: lighten($primary-color,20%);
 	min-height: 100vh;
 	position: relative;
+	overflow-x: hidden;
 }
 
 .hidden {
@@ -51,7 +52,7 @@ body {
 	border-radius: 5px;
 	background: #fff;
 	color: rgb(186, 80, 144);
-	padding: 1em;
+	padding: 2vh;
 	position: relative;
 }
 
@@ -65,7 +66,7 @@ body {
 
 .dilemma__title {
 	font-size: 2.8em;
-	font-size: 8vmin;
+	font-size: 7vmin;
 	line-height: 1em;
 	color: rgb(66,66,66);
 }

@@ -6595,7 +6595,8 @@ th.hide-for-touch {
 body {
   background: #d799be;
   min-height: 100vh;
-  position: relative; }
+  position: relative;
+  overflow-x: hidden; }
 
 .hidden {
   display: none;
@@ -6644,7 +6645,7 @@ body {
   border-radius: 5px;
   background: #fff;
   color: #ba5090;
-  padding: 1em;
+  padding: 2vh;
   position: relative; }
 
 .dilemma__card--active {
@@ -6655,7 +6656,7 @@ body {
 
 .dilemma__title {
   font-size: 2.8em;
-  font-size: 8vmin;
+  font-size: 7vmin;
   line-height: 1em;
   color: #424242; }
 
