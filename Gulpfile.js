@@ -65,6 +65,7 @@ DEVELOPMENT
 	  gulp.src(aStyles)
 		.pipe(plugins.plumber({ handleError: function (err) {console.log(err);this.emit('end');} }))
 		.pipe(plugins.autoprefixer('> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'))
+		.pipe(plugins.concat('styles.min.css'))
 		.pipe(gulp.dest('./public/css/'))
 		.pipe(plugins.livereload());
 	});
@@ -112,8 +113,8 @@ BUILD
 		.pipe(plugins.concat('./css/plugins/bower.css'));
 	  gulp.src(aStyles)
 		.pipe(plugins.plumber({ handleError: function (err) {console.log(err);this.emit('end');} }))
-		.pipe(plugins.concat('styles.min.css'))
 		.pipe(plugins.autoprefixer('> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'))
+		.pipe(plugins.concat('styles.min.css'))
 		.pipe(plugins.minifyCss())
 		.pipe(gulp.dest('./build/css/'))
 		.pipe(plugins.gzip(gzip_options))
