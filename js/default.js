@@ -4,7 +4,7 @@ var settings = {
 		dilemma__cards : "../server/dilemma__cards.php",
 		dilemma__result : "../server/dilemma__result.json"
 	} ,
-	dilemmaTime : 1000 * 1000
+	dilemmaTime : 10 * 1000
 };
 
 var options = {
