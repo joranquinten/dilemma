@@ -4,7 +4,7 @@ var settings = {
 		dilemma__cards : "../server/dilemma__cards.php",
 		dilemma__result : "../server/dilemma__result.json"
 	} ,
-	dilemmaTime : 10 * 1000
+	dilemmaTime : 1000 * 1000
 };
 
 var options = {
@@ -147,4 +147,5 @@ function resetTimer(){
 document.addEventListener("DOMContentLoaded", function() {
  console.log('DOMContentLoaded');
  dilemmaControls();
+  if (window.location.hash !== '') loadDilemma();
 });
