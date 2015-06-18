@@ -4265,6 +4265,7 @@ function dilemmaControls(){
 				el.className += ' ' + 'bounceOut';
 			}
 		});
+		window.location.hash = '';
 		loadDilemma();
 	 }, false);
 }
@@ -4301,6 +4302,6 @@ function resetTimer(){
 document.addEventListener("DOMContentLoaded", function() {
  console.log('DOMContentLoaded');
  dilemmaControls();
-  if (window.location.hash !== '') loadDilemma();
+ if (window.location.hash !== '') loadDilemma();
 });
 

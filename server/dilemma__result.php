@@ -19,13 +19,11 @@ $rating = 5; // defaults to 5
 		
 		try {
 			$dbh = new PDO('mysql:host=localhost;dbname=db_dilemma', 'root', '');
-		
-			$sql = ' INSERT IGNORE INTO vote ';
-			$sql .= ' SET "game" = (SELECT id FROM games WHERE guid = "'.$guid.'" LIMIT 0,1) ';
-			$sql .= ' , "item" = '. $id .' ';
-			$sql .= ' , "user" = null ';
-			$sql .= ' , "rating" = '. $rating .'  ';
-			$sql .= ' ; ';
+			
+			$sql = ' INSERT INTO vote ';
+			$sql .= ' (game, item, user, rating) ';
+			$sql .= ' VALUES ';
+			$sql .= ' ((SELECT id FROM games WHERE guid = "'.$guid.'" LIMIT 0,1), '. $id .', null, '. $rating .'); ';
 			
 			$dbh->query($sql);
 			
