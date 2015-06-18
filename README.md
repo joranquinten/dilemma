@@ -44,6 +44,8 @@ My php skills are a bit rusty. I am well aware that the SQL statements are open 
 ---
 
 ### To do:
+- Set, detect & recognize guests
+- Detect wether a 'saved' dilemma has been completed and act accordingly
 - Performance check
 - Save your choice in voting system and display result accordingly
 - Present different dilemma than last shown
