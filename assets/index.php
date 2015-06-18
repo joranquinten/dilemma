@@ -35,8 +35,8 @@
 	</div>
 			
 	{{#each dilemma}}	
-	<div class="dilemma__card animated flipInY">
-		<div class="dilemma__title" data-dilemma-id="{{this.dilemma_id}}">{{this.title}}</div>
+	<div class="dilemma__card animated flipInY" data-dilemma-id="{{this.dilemma_id}}">
+		<div class="dilemma__title">{{this.title}}</div>
 	</div>		
 	{{/each}}
 	

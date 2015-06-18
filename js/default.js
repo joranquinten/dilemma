@@ -2,9 +2,9 @@ var settings = {
 	urls : {
 		base_url: "http://localhost/dilemma/public/",
 		dilemma__cards : "../server/dilemma__cards.php",
-		dilemma__result : "../server/dilemma__result.json"
+		dilemma__result : "../server/dilemma__result.php"
 	} ,
-	dilemmaTime : 10 * 1000
+	dilemmaTime : 100 * 1000
 };
 
 var options = {
@@ -49,8 +49,13 @@ function loadDilemma(){
 				[].map.call(document.querySelectorAll('.dilemma__card--active'), function(el) {
                 el.classList.remove('dilemma__card--active');
             });		
-            this.classList.add('dilemma__card--active'); 
-				saveDilemma();
+            this.classList.add('dilemma__card--active');
+				var dilemmaID;
+				if (typeof(this.getAttribute('data-dilemma-id')) === 'string') {
+					dilemmaID = this.getAttribute('data-dilemma-id');		
+					console.log('Chosen ID: '+ dilemmaID);
+				}
+				saveDilemma(dilemmaID);
 			});
 		}
 		var button__quit = document.querySelector('#button__quitDilemma');
@@ -68,7 +73,7 @@ function loadDilemma(){
 	request.send();
 }
 
-function saveDilemma(){
+function saveDilemma(chosenID){
 	// End timer
 	stopTimer();
 	
@@ -77,7 +82,15 @@ function saveDilemma(){
 	
 	// Show result (on callback or timeout)
 	var request = new XMLHttpRequest();
-	request.open('GET', settings.urls.dilemma__result, true);
+	var loadUrl = settings.urls.dilemma__result;
+	var qs = '?ts='+ Date.now();
+	console.log(chosenID)
+	console.log(typeof(chosenID))
+	if (typeof(chosenID) === 'string') 	qs += '&dilemma='+ chosenID;
+	if (window.location.hash !== '') 	qs += '&hash='+ window.location.hash.slice(1);
+	
+	
+	request.open('GET', loadUrl + qs, true);
 	request.onload = function() {
 	  if (request.status >= 200 && request.status < 400) {
 		console.log('JSON loaded');
@@ -149,3 +162,4 @@ document.addEventListener("DOMContentLoaded", function() {
  dilemmaControls();
   if (window.location.hash !== '') loadDilemma();
 });
+

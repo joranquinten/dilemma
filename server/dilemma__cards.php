@@ -1,6 +1,7 @@
 <?php
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
+// Start timer
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -9,6 +10,7 @@ $start = $time;
 $items = array();
 $guid = isset($_GET['hash']) ? $_GET['hash'] : '';
 
+// Connect
 try {
     $dbh = new PDO('mysql:host=localhost;dbname=db_dilemma', 'root', '');
 	
@@ -34,6 +36,7 @@ try {
 		$sql .= ' LIMIT 0, 2 ';
 	}
 	
+	// Display
     foreach($dbh->query($sql) as $row) {
 	
 		$score = $row[3];
@@ -65,7 +68,7 @@ try {
     die();
 }
 
-
+// Stop timer
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
