@@ -1,14 +1,14 @@
 var settings = {
 	urls : {
-		base_url: "http://localhost/dilemma/public/",
-		dilemma__cards : "../server/dilemma__cards.php",
-		dilemma__result : "../server/dilemma__result.php"
+		base_url: "http://dilemma.joranquinten.nl/",
+		dilemma__cards : "server/dilemma__cards.php",
+		dilemma__result : "server/dilemma__result.php"
 	} ,
-	dilemmaTime : 100 * 1000
+	dilemmaTime : 10 * 1000
 };
 
 var options = {
-	debugMode : true
+	debugMode : false
 };
 
 var utils = {
