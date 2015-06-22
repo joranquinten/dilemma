@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (isset($_SESSION['user'])){
+	$user = $_SESSION['user']['id'];
+}else{
+	$user = 'null';
+};
+
 date_default_timezone_set('Europe/Amsterdam');
 header('Content-Type: application/json');
 
@@ -59,7 +67,7 @@ try {
 		$sql = ' INSERT INTO games ';
 		$sql .= ' (guid, item1, item2, user) ';
 		$sql .= ' VALUES ';
-		$sql .= ' ("'. $guid .'", '. $items[0]['dilemma_id'] .', '. $items[1]['dilemma_id'] .', null); ';
+		$sql .= ' ("'. $guid .'", '. $items[0]['dilemma_id'] .', '. $items[1]['dilemma_id'] .', "'.$user.'"); ';
 		$dbh->query($sql);
 	}
 	$dbh = null;

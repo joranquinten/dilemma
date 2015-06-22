@@ -75,8 +75,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `emailaddress` varchar(250) NOT NULL,
   `guid` char(36) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_ip` varchar(15) NOT NULL,
+  `last_visit` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Triggers `users`

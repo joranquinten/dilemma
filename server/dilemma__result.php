@@ -1,4 +1,12 @@
 <?php
+session_start();
+		
+if (isset($_SESSION['user'])){
+	$user = $_SESSION['user']['id'];
+}else{
+	$user = 'null';
+};
+
 date_default_timezone_set('Europe/Amsterdam');
 header('Content-Type: application/json');
 
@@ -24,7 +32,7 @@ $rating = 5; // defaults to 5
 			$sql = ' INSERT INTO vote ';
 			$sql .= ' (game, item, user, rating) ';
 			$sql .= ' VALUES ';
-			$sql .= ' ((SELECT id FROM games WHERE guid = "'.$guid.'" LIMIT 0,1), '. $id .', null, '. $rating .'); ';
+			$sql .= ' ((SELECT id FROM games WHERE guid = "'.$guid.'" LIMIT 0,1), '. $id .', "'.$user.'", '. $rating .'); ';
 			
 			$dbh->query($sql);
 			

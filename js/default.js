@@ -1,10 +1,10 @@
 var settings = {
 	urls : {
 		base_url: "http://dilemma.joranquinten.nl/",
-		dilemma__cards : "server/dilemma__cards.php",
-		dilemma__result : "server/dilemma__result.php"
+		dilemma__cards : "../server/dilemma__cards.php",
+		dilemma__result : "../server/dilemma__result.php"
 	} ,
-	dilemmaTime : 10 * 1000
+	dilemmaTime : 100 * 1000
 };
 
 var options = {
@@ -84,8 +84,7 @@ function saveDilemma(chosenID){
 	var request = new XMLHttpRequest();
 	var loadUrl = settings.urls.dilemma__result;
 	var qs = '?ts='+ Date.now();
-	console.log(chosenID)
-	console.log(typeof(chosenID))
+
 	if (typeof(chosenID) === 'string') 	qs += '&dilemma='+ chosenID;
 	if (window.location.hash !== '') 	qs += '&hash='+ window.location.hash.slice(1);
 	
