@@ -1,9 +1,21 @@
+<?php
+session_start();
+global $user;
+
+require 'php/settings.php';
+// functions
+require 'php/global.php';
+require 'php/user.php';
+
+initUser();
+?>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dire dilemma</title>
+    <title><?php echo $aWebsiteDefaults['meta']['Title'];?></title>
+	<meta name="Description" content="<?php echo $aWebsiteDefaults['meta']['Description'];?>">
     <link href="http://fonts.googleapis.com/css?family=Pacifico:400,700|Open+Sans" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/critical.js"></script>
@@ -48,6 +60,12 @@
   </head>
   <body>
     
+	<div class="row user__bar">
+      <div class="large-12 columns">
+	  <i class="fa fa-user"></i> Welcome <?php echo $user['username'];?>! 
+      </div>
+	</div>
+	
     <div class="row logo">
       <div class="large-12 columns">
         <h1 class="logo__title logo__title--large">Dire dilemma</h1>

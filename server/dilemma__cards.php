@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])){
 };
 
 date_default_timezone_set('Europe/Amsterdam');
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 // Start timer
 $time = microtime();
@@ -22,7 +22,7 @@ $guid = isset($_GET['hash']) ? $_GET['hash'] : '';
 // Connect
 try {
     $dbh = new PDO('mysql:host=localhost;dbname=db_dilemma', 'root', '');
-	
+
 	// select
 	if ($guid!=='') {
 		$sql  = ' SELECT items.id, items.title, items.created_at ';
@@ -44,13 +44,13 @@ try {
 		$sql .= ' ORDER BY RAND() ';
 		$sql .= ' LIMIT 0, 2 ';
 	}
-	
+
 	// Display
     foreach($dbh->query($sql) as $row) {
-	
+
 		$score = $row[3];
 		if ($row[4] > 0) $score = $row[3]/$row[4];
-	
+
 		$item = array(
 					'dilemma_id' => $row[0],
 					'created_at' => date('r', strtotime($row[2])),
@@ -60,7 +60,7 @@ try {
 		);
 		array_push($items, $item);
     }
-    
+
 	// save only new game
 	if ($guid==='') {
 		$guid = GUID();
@@ -71,7 +71,7 @@ try {
 		$dbh->query($sql);
 	}
 	$dbh = null;
-	
+
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
@@ -91,7 +91,7 @@ $response = array(
 			'time' => $total_time,
 			'measure' => 'seconds'
 			)
-		), 
+		),
 	'dilemma' => array(
 		'items' => $items,
 		'guid' => $guid

@@ -37,7 +37,7 @@ Currently, a pipe dream. It would be nice to be able to send in your very own di
 
 ### Disclaimer
 
-This repo builds a webapp for playing Dire Dilemma. Built with gulp, bower. View dependencies in package.json or bower.json. 
+This repo builds a webapp for playing Dire Dilemma. Built with gulp, bower. View dependencies in package.json or bower.json.
 
 My php skills are a bit rusty. I am well aware that the SQL statements are open to vulnerabilities. The goal of this repo is to not build a stable, secure backend, but to build a functional demonstration based upon generated JSON content. If you would like to improve this bit: be my guest!
 
