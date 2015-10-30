@@ -32,6 +32,7 @@ body {
 	border: 3px solid rgb(240, 240, 240);
 	background: rgb(240, 240, 240);
 	box-shadow: inset 0 0 3px 0 rgba(0,0,0,0.5);
+	overflow-x: hidden;
 
 }
 	.dilemma__gauge__fill {
@@ -42,9 +43,9 @@ body {
 		background: rgb(186, 80, 114);
 		background: -webkit-linear-gradient(90deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
 		background: linear-gradient(180deg, rgb(186, 80, 114) 30%, rgb(178, 65, 132) 70%);
-		
+
 		transition: width .5s ease-in-out;
-	
+
 	}
 
 .dilemma__card {
@@ -78,11 +79,11 @@ body {
 	border-top: 1px solid rgb(240,240,240);
 	border-bottom: 1px solid rgb(210,210,210);
 	margin: 0.67em 0;
-}	
+}
 .dilemma__details {
 	font-size: 0.67em;
 	color: lighten($primary-color,20%)
-}	
+}
 	.dilemma__details * + * {
 		padding: 0 1em;
 	}
@@ -92,7 +93,7 @@ body {
 	.dilemma__details > *:first-child {
 		padding: 0 1em 0 0;
 	}
-	
+
 	.dilemma__rating {
 	}
 	.dilemma__chosen {

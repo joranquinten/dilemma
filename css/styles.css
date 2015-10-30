@@ -6479,7 +6479,8 @@ body {
   display: block;
   border: 3px solid #f0f0f0;
   background: #f0f0f0;
-  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.5); }
+  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.5);
+  overflow-x: hidden; }
 
 .dilemma__gauge__fill {
   display: block;

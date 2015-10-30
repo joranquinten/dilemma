@@ -1,0 +1,15 @@
+<div class="dilemma__gauge">
+  <div class="dilemma__gauge__fill animated" style="width: {{ remainingTime/totalTime | percentage:2}}"></div>
+</div>
+
+<div ng-repeat="dilemma in dilemmas">
+
+<div class="dilemma__card animated flipInY" data-dilemma-id="{{dilemma.dilemma_id}}">
+  <div class="dilemma__title">{{dilemma.title}}</div>
+</div>
+
+</div>
+
+<div class="dilemma__controls">
+  <button id="button__quitDilemma" ng-click="quitDilemma();" class="button round expand"><i class="fa fa-flag-checkered"></i> Quit</button>
+</div>
