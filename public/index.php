@@ -39,28 +39,21 @@ initUser();
 		<div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
 		<div class="large-8 medium-8 small-12 columns">
 
-
-<div id="dilemma__loader" class="dilemma__container" ng-controller="dilemmaController">
-
-    <div ng-view></div>
-
-    <button ng-click="startTimer();">startTimer</button>
-    <button ng-click="stopTimer();">stopTimer</button>
-    <button ng-click="resetTimer();">resetTimer</button>
-    <span>{{ remainingTime/totalTime | percentage:2}}</span>
-
-</div>
-
+      <div id="dilemma__loader" class="dilemma__container" ng-controller="dilemmaController">
+        <div ng-view></div>
+      </div>
 
       <div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
 	</div>
 
-	<footer class="hidden">
+  </div>
+
+	<footer class="_hidden">
 
 	<div class="row">
 		<div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
 		<div class="large-8 medium-8 small-12 columns colofon">
-			Developed by <a href="http://joranquinten.nl/" title="Developed by Joran Quinten">Joran Quinten</a> &copy; <?php echo Date("Y");?>
+			Developed by <a href="http://joranquinten.nl/" title="Developed by Joran Quinten">Joran Quinten</a>
 		</div>
 		<div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
 	</div>

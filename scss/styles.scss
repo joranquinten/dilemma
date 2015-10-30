@@ -16,6 +16,10 @@ body {
 	visibility: hidden;
 }
 
+.user__bar {
+	color: lighten($primary-color,30%);
+}
+
 .logo { text-align: center; color: #fff; }
 .logo__image { font-size: 12vmin;  }
 .logo__title { margin: 0.67em auto 0; font-family: Pacifico;  font-size: 10vmin; line-height: 1.0em; color: #fff;  }

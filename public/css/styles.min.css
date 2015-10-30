@@ -6431,6 +6431,9 @@ body {
   display: none;
   visibility: hidden; }
 
+.user__bar {
+  color: #e5bed6; }
+
 .logo {
   text-align: center;
   color: #fff; }
