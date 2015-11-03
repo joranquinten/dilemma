@@ -2,11 +2,11 @@
   <div class="dilemma__gauge__fill animated" style="width: {{ remainingTime/totalTime | percentage:2}}"></div>
 </div>
 
-<div ng-repeat="dilemma in dilemmas">
+<div>
 
-<div class="dilemma__card animated flipInY" data-dilemma-id="{{dilemma.dilemma_id}}">
-  <div class="dilemma__title">{{dilemma.title}}</div>
-</div>
+  <div ng-repeat="dilemma in dilemmas" class="dilemma__card animated flipInY" data-dilemma-id="{{dilemma.dilemma_id}}" ng-click="saveDilemma(dilemma.dilemma_id);">
+    <div class="dilemma__title">{{dilemma.title}}</div>
+  </div>
 
 </div>
 

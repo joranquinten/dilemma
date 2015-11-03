@@ -8,7 +8,7 @@
 
   <div class="dilemma__info animated">
     <h2>How does it work?</h2>
-    <p>Each round of the game, you get submitted to two dilemmas. You must choose a dilemma to proceed. If the timer runs out, another dilemma will appear.</p>
+    <p>Each round of the game, you get submitted to two dilemmas. You must choose a dilemma to proceed within {{dilemmaTime | date:'ss' }} seconds. If the timer runs out, another dilemma will appear.</p>
     <button id="button__newDilemma" ng-click="newGame();" class="button round expand button__select"><i class="fa fa-bolt"></i> Start it already!</button>
     <button id="button__register" class="button round expand button__select hidden"><i class="fa fa-link"></i> Connect with Social Media</button>
   </div>

@@ -6467,7 +6467,6 @@ body {
   border-radius: 1000px;
   height: 5px;
   background: #ba5072;
-  background: -webkit-linear-gradient(90deg, #ba5072 30%, #b24184 70%);
   background: -webkit-linear-gradient(270deg, #ba5072 30%, #b24184 70%);
   background: linear-gradient(180deg, #ba5072 30%, #b24184 70%);
   -webkit-transition: width .5s ease-in-out;
@@ -6485,7 +6484,7 @@ body {
   background: rgba(186, 80, 144, 0.01);
   background: #f1dce9;
   -webkit-transition: background-color .5s ease-in-out;
-  transition: background-color .5s ease-in-out; }
+          transition: background-color .5s ease-in-out; }
 
 .dilemma__title {
   font-size: 2.8em;

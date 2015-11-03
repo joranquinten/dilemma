@@ -18,39 +18,23 @@ $start = $time;
 
 $items = array();
 $guid = isset($_GET['hash']) ? $_GET['hash'] : '';
+$id = isset($_GET['dilemma']) ? $_GET['dilemma'] : '';
 $rating = 5; // defaults to 5
 
 // Connect
 
 	// save
-	if ($guid !== '') {
+	if (($guid !== '') && ($id !== '')) {
 
 		try {
 			$dbh = new PDO('mysql:host=localhost;dbname=db_dilemma', 'root', '');
 
-			// return result
-			$sql  = ' SELECT items.id, items.title, items.created_at ';
-			$sql .= '  , IFNULL((SELECT SUM(rating) FROM vote WHERE vote.item = items.id),0) AS score ';
-			$sql .= '  , IFNULL((SELECT COUNT(id) FROM vote WHERE vote.item = items.id),0) AS votes ';
-			$sql .= ' FROM items ';
-			$sql .= ' INNER JOIN games ON games.guid = "'.$guid.'" ';
-			$sql .= ' INNER JOIN vote ON games.id = vote.game AND items.id = vote.item ';
-			$sql .= ' LIMIT 0,1 ';
+			$sql = ' INSERT INTO vote ';
+			$sql .= ' (game, item, user, rating) ';
+			$sql .= ' VALUES ';
+			$sql .= ' ((SELECT id FROM games WHERE guid = "'.$guid.'" LIMIT 0,1), '. $id .', "'.$user.'", '. $rating .'); ';
 
-			foreach($dbh->query($sql) as $row) {
-
-				$score = $row[3];
-				if ($row[4] > 0) $score = number_format ($row[3]/$row[4], 2);
-
-				$item = array(
-							'dilemma_id' => $row[0],
-							'created_at' => date('r', strtotime($row[2])),
-							'score' => $score,
-							'votes' => $row[4],
-							'title' => $row[1]
-				);
-				array_push($items, $item);
-			}
+			$dbh->query($sql);
 
 			$dbh = null;
 		} catch (PDOException $e) {
@@ -75,8 +59,7 @@ $response = array(
 			)
 		),
 	'result' => array(
-		'items' => $items,
-		'guid' => $guid
+		'success' => true
 	)
 );
 

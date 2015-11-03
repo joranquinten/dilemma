@@ -39,12 +39,12 @@ initUser();
 		<div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
 		<div class="large-8 medium-8 small-12 columns">
 
-      <div id="dilemma__loader" class="dilemma__container" ng-controller="dilemmaController">
+      <div id="dilemma__loader" class="dilemma__container">
         <div ng-view></div>
       </div>
+	</div>
 
       <div class="large-2 medium-2 hide-for-small columns">&nbsp;</div>
-	</div>
 
   </div>
 
