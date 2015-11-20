@@ -1,6 +1,11 @@
 // Karma configuration
 // Generated on Thu Nov 19 2015 15:55:24 GMT+0100 (W. Europe Standard Time)
 
+// http://jbavari.github.io/blog/2014/06/11/unit-testing-angularjs-services/
+// http://andyshora.com/unit-testing-best-practices-angularjs.html
+// http://www.benlesh.com/2013/05/angularjs-unit-testing-controllers.html
+// http://www.benlesh.com/2013/06/angular-js-unit-testing-services.html
+
 module.exports = function(config) {
   config.set({
 
@@ -14,13 +19,18 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: ['../tests/unit/**/*.js'],
-
+    files: [
+      '../js/vendor/jquery.js',
+      '../js/vendor/**/*.js',
+      '../js/plugins/**/*.js',
+      '../js/foundation.min.js',
+      '../js/default.js',
+      '../tests/unit/**/*.js'
+    ],
 
     // list of files to exclude
     exclude: [
     ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

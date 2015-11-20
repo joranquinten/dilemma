@@ -191,7 +191,7 @@ gulp.task('default', ['lint', 'scripts', 'sass', 'styles', 'html', 'serve'], fun
 
 gulp.task('serve', function(){
   // Assumes you have a local webserver running and content is accessible via localhost by default
-  browserSync.init({server: false, proxy: 'localhost/'+ currentDir() +'/public', browser: config.plugins.browserSync.browsers });
+  browserSync.init({server: false, proxy: 'localhost/'+ currentDir() +'/public', browser: ['chrome'] });
 
   // Use static server:
   // browserSync.init({server: { baseDir: './' }, browser: config.plugins.browserSync.browsers });

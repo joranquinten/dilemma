@@ -107,10 +107,11 @@ dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routePa
 		var intervalTimer, iCurrentTime = 0, iMaxTime = settings.dilemmaTime;
 
 		$scope.remainingTime = iCurrentTime;
-		$scope.totalTime = iMaxTime;
+		$scope.totalTime = (typeof(iMaxTime) === 'number' ? iMaxTime : 20000);
+
 
 		$scope.startTimer = function(){
-			console.log('startTimer');
+			//console.log('startTimer');
 				intervalTimer = setInterval(function(){
 						// Time up!
 						if (iCurrentTime >= iMaxTime){
@@ -122,21 +123,21 @@ dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routePa
 							iCurrentTime += 500;
 						}
 
-						$scope.$apply(function() {
+						//$scope.$apply(function() {
 			        $scope.remainingTime = iCurrentTime;
-			      });
+			    //  });
 					}, 500
 				);
 
 		};
 
 		$scope.stopTimer = function(){
-			console.log('stopTimer');
+			//console.log('stopTimer');
 			clearInterval(intervalTimer);
 		};
 
 		$scope.resetTimer = function(){
-			console.log('resetTimer');
+			//console.log('resetTimer');
 			iCurrentTime = 0;
 			$scope.remainingTime = iCurrentTime;
 			clearInterval(intervalTimer);
