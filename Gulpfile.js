@@ -9,6 +9,10 @@ var plugins = require("gulp-load-plugins")({ pattern: ['gulp-*', 'gulp.*'], repl
 var gzip_options = { threshold: '1kb', gzipOptions: { level: 9 } };
 var browserSync = require("browser-sync");
 
+// Testing plugins
+var karmaServer = require('karma').Server;
+var protractor = require("gulp-protractor").protractor;
+
 // Files
 var aScrips = ['./js/vendor/fastclick.js','./js/vendor/jquerycookie.js','./js/vendor/jquery.js','./js/vendor/placeholder.js','./js/foundation.min.js','./js/plugins/*.js','./js/default.js'];
 var aScriptsCritical = ['./js/vendor/modernizr.js'];
@@ -16,15 +20,7 @@ var aStyles = ['./css/*.min.css','./css/plugins/*.css','./css/styles.css'];
 var aHtml = ['./assets/**/*.{html,php}'];
 var aImages = ['./img/**/*.{gif,png,jpeg,jpg,svg}'];
 
-
 var reload      = browserSync.reload;
-
-browserSync.init({
-	server: false,
-	proxy: "localhost/dilemma/public",
-	browser: ["chrome"]
-});
-
 
 /* **************************************************
 GLOBAL
@@ -42,6 +38,35 @@ GLOBAL
 			.pipe(plugins.sass())
 			.pipe(gulp.dest('./css'));
 	});
+
+/* **************************************************
+TESTING
+************************************************** */
+
+gulp.task('unit', function(done){
+
+  console.log('Starting unit tests. Note that this follow a watch pattern on testfiles, press Ctrl+C to quit.');
+
+  		  new karmaServer({
+  		    configFile: __dirname + '/tests/unit.karma.conf.js',
+  		    singleRun: false
+  		  }, done).start();
+
+});
+
+gulp.task('e2e', function(){
+
+  gulp.src(['tests/e2e/**/*.js'])
+      .pipe(protractor({
+          configFile: __dirname + '/tests/e2e.protractor.conf.js',
+          args: ['--baseUrl', 'http://127.0.0.1:8000']
+      }))
+      .on('error', function(err) {
+        this.emit('end'); //instead of erroring the stream, end it
+      });
+
+  console.log('Starting end to end tests. Note that this starts up a browser and could take a while, press Ctrl+C to quit.');
+});
 
 /* **************************************************
 DEVELOPMENT
@@ -157,11 +182,26 @@ BUILD
 INSTRUCTIONS
 ************************************************** */
 
-	gulp.task('default', ['lint', 'scripts', 'sass', 'styles', 'html'], function() {
+gulp.task('default', ['lint', 'scripts', 'sass', 'styles', 'html', 'serve'], function() {
 	  gulp.watch(aScrips, ['scripts','lint']).on('change', browserSync.reload);
 	  gulp.watch('./scss/*.scss', ['sass']);
 	  gulp.watch(aStyles, ['styles']).on('change', browserSync.reload);
 	  gulp.watch(aHtml, ['html']).on('change', browserSync.reload);
-	});
+});
+
+gulp.task('serve', function(){
+  // Assumes you have a local webserver running and content is accessible via localhost by default
+  browserSync.init({server: false, proxy: 'localhost/'+ currentDir() +'/public', browser: config.plugins.browserSync.browsers });
+
+  // Use static server:
+  // browserSync.init({server: { baseDir: './' }, browser: config.plugins.browserSync.browsers });
+
+});
+
 	gulp.task('default-bld', ['lint', 'scripts', 'sass', 'styles', 'html']);
 	gulp.task('build', ['scripts-bld', 'sass', 'styles-bld', 'html-bld', 'files-bld', 'critical-bld']);
+
+	/* Other helpers */
+	function currentDir(){
+	  if (__dirname) return __dirname.split('\\').pop();
+	}
