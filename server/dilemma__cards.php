@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])){
 };
 
 date_default_timezone_set('Europe/Amsterdam');
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 // Start timer
 $time = microtime();
