@@ -15,6 +15,5 @@ describe('Basic setup', function(){
   it('should have a result template', function(){
     expect(settings.urls.dilemma__result).not.toBe(null);
   });
-
-
+  
 });

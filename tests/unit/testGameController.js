@@ -1,22 +1,39 @@
 describe('Controller dilemmaGame', function() {
   beforeEach(module('dilemmaApp'));
 
-  var $controller;
+  var $controller,
+      $interval,
+      $timeout,
+      $httpBackend;
 
-  beforeEach(inject(function(_$controller_){
+  beforeEach(inject(function(_$controller_, _$interval_,_$timeout_,_$httpBackend_){
     $controller = _$controller_;
+    $interval = _$interval_;
+    $timeout = _$timeout_;
+    $httpBackend = _$httpBackend_;
   }));
 
-  jasmine.clock().install();
+  var settings = {
+  	general : {
+  		debugMode : true
+  	} ,
+  	urls : {
+  		base_url: "http://dilemma.joranquinten.nl/",
+  		dilemma__cards 	: "../server/dilemma__cards.php",
+  		dilemma__save 	: "../server/dilemma__save.php",
+  		dilemma__result : "../server/dilemma__result.php"
+  	} ,
+  	dilemmaTime : 20 * 1000,
+  	timeupResumeNext: true
+  };
+  var iMaxTime = (typeof(settings.dilemmaTime) === 'number' ? settings.dilemmaTime : 20000);
 
   describe('Timer functions', function(){
       beforeEach(inject(function(){
         $scope = {};
         controller = $controller('dilemmaGame', { $scope: $scope });
+        $httpBackend.expectGET(settings.urls.dilemma__cards).respond(200);
       }));
-
-      var settings = { dilemmaTime : 20 * 1000, timeupResumeNext: true };
-      var iMaxTime = (typeof(settings.dilemmaTime) === 'number' ? settings.dilemmaTime : 20000);
 
       it('should set the remaining time to 0 on start', function() {
         $scope.remainingTime = 0;
@@ -28,15 +45,15 @@ describe('Controller dilemmaGame', function() {
         $scope.remainingTime = 0;
         $scope.totalTime = iMaxTime;
         $scope.startTimer();
-        jasmine.clock().tick(1000);
-        expect($scope.remainingTime).toEqual(1000);
+        $interval.flush(500);
+        expect($scope.remainingTime).toEqual(500);
       });
 
       it('should not exceed the maximum time, but get reset to 0', function () {
         $scope.remainingTime = 0;
         $scope.totalTime = iMaxTime;
         $scope.startTimer();
-        jasmine.clock().tick(settings.dilemmaTime =+ 1);
+        $interval.flush(settings.dilemmaTime =+ 1);
         expect($scope.remainingTime).toEqual(0);
       });
 
@@ -44,9 +61,9 @@ describe('Controller dilemmaGame', function() {
         $scope.remainingTime = 0;
         $scope.totalTime = iMaxTime;
         $scope.startTimer();
-        jasmine.clock().tick(1000);
+        $interval.flush(1000);
         $scope.stopTimer();
-        jasmine.clock().tick(1000);
+        $interval.flush(1000);
         expect($scope.remainingTime).toEqual(1000);
       });
 
@@ -54,7 +71,7 @@ describe('Controller dilemmaGame', function() {
         $scope.remainingTime = 1000;
         $scope.totalTime = iMaxTime;
         $scope.startTimer();
-        jasmine.clock().tick(1000);
+        $interval.flush(1000);
         $scope.resetTimer();
         expect($scope.remainingTime).toEqual(0);
       });
@@ -66,16 +83,20 @@ describe('Controller dilemmaGame', function() {
     beforeEach(inject(function(){
       $scope = {};
       controller = $controller('dilemmaGame', { $scope: $scope });
+      $httpBackend.expectGET(settings.urls.dilemma__cards).respond(200);
     }));
 
-    var settings = { dilemmaTime : 20 * 1000, timeupResumeNext: true };
     var iMaxTime = (typeof(settings.dilemmaTime) === 'number' ? settings.dilemmaTime : 20000);
+
+    it('should have no items loaded initially', function(){
+      expect($scope.dilemmas).toBe(null);
+    });
 
     it('should start timer on load success', function () {
       $scope.remainingTime = 0;
       $scope.totalTime = iMaxTime;
       $scope.loadDilemma();
-      jasmine.clock().tick(1000);
+      $interval.flush(1000);
       $scope.stopTimer();
       expect($scope.remainingTime).toEqual(0);
 
@@ -85,7 +106,7 @@ describe('Controller dilemmaGame', function() {
       $scope.resetTimer();
       $scope.totalTime = iMaxTime;
       $scope.startTimer();
-      jasmine.clock().tick(1000);
+      $interval.flush(1000);
       $scope.saveDilemma();
       expect($scope.remainingTime).toEqual(1000);
     });
@@ -93,7 +114,7 @@ describe('Controller dilemmaGame', function() {
     it('should reset timer on quitting', function () {
       $scope.resetTimer();
       $scope.startTimer();
-      jasmine.clock().tick(1000);
+      $interval.flush(1000);
       $scope.quitDilemma();
       expect($scope.remainingTime).toEqual(0);
     });
@@ -102,53 +123,3 @@ describe('Controller dilemmaGame', function() {
 
 
 });
-
-/*
-
-dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routeParams){
-
-		$scope.loadDilemma = function(){
-
-
-
-			// retrieve a random dilemma, or predefined, if hash exists
-			var loadUrl = settings.urls.dilemma__cards;
-			if ($routeParams.guid !== undefined) loadUrl += '?hash='+ $routeParams.guid;
-
-			$http.get(loadUrl)
-				.success(function(response){
-					$scope.dilemmas = response.dilemma.items;
-					if ($routeParams.guid === undefined){
-						if (response.dilemma.guid !== ''){ window.location.hash =  window.location.hash +'/'+ response.dilemma.guid;}
-					}
-
-					$scope.startTimer();
-			});
-		};
-
-		$scope.saveDilemma = function(chosenID){
-			$scope.stopTimer();
-			var qs = '?ts='+ Date.now(); // querystring + timestamp
-			if (typeof(chosenID) === 'string') 	qs += '&dilemma='+ chosenID;
-			if ($routeParams.guid !== undefined) qs += '&hash='+ $routeParams.guid;
-
-			// save the chosen option, return a result
-			var loadUrl = settings.urls.dilemma__save;
-
-			$http.get(loadUrl + qs)
-				.success(function(response){
-					if (response.result.success) {
-						$location.path('/result/'+ $routeParams.guid);
-					}
-			});
-		};
-
-		$scope.quitDilemma = function(){
-			$scope.resetTimer();
-			$location.path('/quit');
-		};
-
-
-});
-
-*/

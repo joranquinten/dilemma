@@ -60,10 +60,11 @@ dilemmaApp.controller('dilemmaStart', function($scope, $location){
 	};
 });
 
-dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routeParams){
+dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routeParams, $interval, $timeout){
 
 		$scope.loadDilemma = function(){
 
+			$scope.dilemmas = null;
 			$scope.resetTimer();
 
 			// retrieve a random dilemma, or predefined, if hash exists
@@ -109,38 +110,38 @@ dilemmaApp.controller('dilemmaGame', function($scope, $location, $http, $routePa
 		$scope.remainingTime = iCurrentTime;
 		$scope.totalTime = (typeof(iMaxTime) === 'number' ? iMaxTime : 20000);
 
-
 		$scope.startTimer = function(){
 			//console.log('startTimer');
-				intervalTimer = setInterval(function(){
+
+			//$interval(fn, delay, [count], [invokeApply], [Pass]);
+
+
+				intervalTimer = $interval(function(){
 						// Time up!
 						if (iCurrentTime >= iMaxTime){
 							$scope.stopTimer();
-							var timeout = setTimeout(function(){
+							var timeout = $timeout(function(){
 								if (settings.timeupResumeNext) $scope.loadDilemma();
 							},1000);
 						} else {
 							iCurrentTime += 500;
 						}
+						$scope.remainingTime = iCurrentTime;
 
-						//$scope.$apply(function() {
-			        $scope.remainingTime = iCurrentTime;
-			    //  });
-					}, 500
-				);
+					}, 500, 0, true);
 
 		};
 
 		$scope.stopTimer = function(){
 			//console.log('stopTimer');
-			clearInterval(intervalTimer);
+			$interval.cancel(intervalTimer);
 		};
 
 		$scope.resetTimer = function(){
 			//console.log('resetTimer');
 			iCurrentTime = 0;
 			$scope.remainingTime = iCurrentTime;
-			clearInterval(intervalTimer);
+			$interval.cancel(intervalTimer);
 		};
 
 		// Start with a dilemma
